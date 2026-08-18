@@ -55,7 +55,7 @@
             font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 800;
             letter-spacing: -1.5px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             line-height: 1.1;
         }
 
@@ -68,6 +68,56 @@
             padding-bottom: 5px;
         }
 
+        /* --- NEW: CIRCLE ANIMATION CSS START --- */
+        
+        .circle-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 15px; /* Gives space for the ring */
+            margin-left: 5px;
+        }
+
+        /* Outer Spinning Ring */
+        .circle-text::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 140%;
+            transform: translate(-50%, -50%);
+            border: 2px dashed rgba(56, 189, 248, 0.5); /* Dashed light blue border */
+            border-radius: 50%; /* Makes it a circle/oval */
+            animation: spin 8s linear infinite; /* Slow continuous spin */
+            z-index: -1;
+        }
+
+        /* Inner Glowing Arcs */
+        .circle-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 140%;
+            transform: translate(-50%, -50%);
+            border: 3px solid transparent;
+            border-top-color: #3b82f6; /* Solid dark blue top */
+            border-bottom-color: #3b82f6; /* Solid dark blue bottom */
+            border-radius: 50%;
+            animation: spin 3s linear infinite reverse; /* Fast reverse spin */
+            z-index: -1;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); /* Glow effect */
+        }
+
+        /* Keyframes for the Spinning Animation */
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* --- NEW: CIRCLE ANIMATION CSS END --- */
+
         /* Clean, Readable Subtext */
         p {
             color: #94a3b8;
@@ -78,7 +128,7 @@
             font-weight: 400;
         }
 
-        /* Custom Animation Keyframes */
+        /* Initial Load Animation */
         @keyframes smoothFadeUp {
             0% {
                 opacity: 0;
@@ -98,7 +148,10 @@
 
     <!-- Main Content -->
     <div class="container">
-        <h1>Welcome to <br><span class="highlight">SingleCircle</span></h1>
+        <!-- Split Single and Circle for the animation -->
+        <h1>Welcome to <br>
+            <span class="highlight">Single</span><span class="highlight circle-text">Circle</span>
+        </h1>
         <p>A mutual space for friends and college students to connect, talk, and hang out.</p>
     </div>
 
