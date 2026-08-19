@@ -297,5 +297,13 @@
         <div class="nav-item">👤</div>
     </nav>
 
+<script>
+    let savedName = localStorage.getItem("singleCircleUser");
+    if(savedName) {
+        // Sirf first name nikalne ke liye
+        let firstName = savedName.split(" ")[0];
+        document.getElementById("greeting").innerText = "Hi, " + firstName + " 👋";
+    }
+</script>
 </body>
 </html>
