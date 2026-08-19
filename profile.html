@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SingleCircle</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #0f172a; color: #f8fafc; min-height: 100vh; overflow-x: hidden; padding-bottom: 80px; }
+        .ambient-glow { position: fixed; top: -10%; right: -10%; width: 300px; height: 300px; background: rgba(129, 140, 248, 0.4); border-radius: 50%; filter: blur(100px); z-index: -1; }
+        
+        /* Top Header */
+        .top-bar { padding: 20px 25px; font-size: 1.5rem; cursor: pointer; }
+        
+        /* Profile Info */
+        .profile-header { display: flex; flex-direction: column; align-items: center; margin-top: 20px; animation: fadeUp 0.6s ease-out; }
+        .profile-pic { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #3b82f6); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; border: 4px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+        .profile-header h2 { margin-top: 15px; font-size: 1.6rem; }
+        .profile-header p { color: #94a3b8; font-size: 0.9rem; margin-top: 5px; }
+
+        /* Stats Card */
+        .stats-glass { width: 90%; margin: 30px auto; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 20px; display: flex; justify-content: space-around; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); animation: fadeUp 0.8s ease-out; }
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 1.2rem; color: #38bdf8; }
+        .stat-item span { font-size: 0.8rem; color: #94a3b8; }
+
+        /* Bottom Nav (Same as Dashboard) */
+        .bottom-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; display: flex; justify-content: space-around; padding: 15px 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); z-index: 100; }
+        .nav-item { color: #64748b; font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; }
+        .nav-item.active { color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); transform: translateY(-2px); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <div class="top-bar" onclick="window.location.href='dashboard.html'">
+        ⬅️ <!-- Back Button -->
+    </div>
+
+    <div class="profile-header">
+        <div class="profile-pic" id="profileInitial">👤</div>
+        <h2 id="profileName">Loading...</h2>
+        <p>Computer Engineering Dept</p>
+    </div>
+
+    <div class="stats-glass">
+        <div class="stat-item">
+            <h3>12</h3>
+            <span>Posts</span>
+        </div>
+        <div class="stat-item">
+            <h3>128</h3>
+            <span>Connections</span>
+        </div>
+        <div class="stat-item">
+            <h3>1.2k</h3>
+            <span>Likes</span>
+        </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='dashboard.html'">🏠</div>
+        <div class="nav-item">🔍</div>
+        <div class="nav-item">💬</div>
+        <div class="nav-item active">👤</div>
+    </nav>
+
+    <!-- JS for Profile Data -->
+    <script>
+        let savedName = localStorage.getItem("singleCircleUser");
+        if(savedName) {
+            document.getElementById("profileName").innerText = savedName;
+            document.getElementById("profileInitial").innerText = savedName.charAt(0).toUpperCase();
+        } else {
+            document.getElementById("profileName").innerText = "Guest User";
+        }
+    </script>
+
+</body>
+</html>
+
+
